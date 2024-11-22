@@ -1,0 +1,139 @@
+# DO NOT CHANGE.  Identifies the file as a data kit configuration and should be set to “morpc_data_kit” for a data kit config file.
+config_type: morpc_data_kit
+
+# DO NOT CHANGE. Unique identifier that describes the version of the data_config.yaml schema.  Note that this DOES NOT refer to 
+# the version of the data kit (see "version" below). Typically, "config_version" should only be changed when a revision
+# is made to the data kit model implementation in GitHub.
+config_version: 1
+
+# MANDATORY. Human readable title that succinctly describes the data kit contents
+title: Total population by year
+
+# MANDATORY. Current version identifier for the data kit.  The value here should match the version number that appears in the README.md 
+# file. Should be a machine-readable value in one of the following forms:
+# ISO 8601 compliant date: 2024-04-29
+# Integer: 1
+# Major/minor: 1.2
+version: 2024-11-14
+
+# MANDATORY. A brief, human-readable description of the purpose and contents of the data kit.
+description: This model data kit is intended to provide a practical example of the structure of a data kit and a template for making other data kits.  The data contained herein should not be used for other purposes.  The kit includes all resources necessary to produce two standardized datasets (long tabular form and wide spatial form) and example visualizations from a single vintage of the Census PEP county components of population change.
+
+# MANDATORY.  Contact information for the provider of the data kit. Contact info must include at least email.
+provider:
+  organization_name: Mid-Ohio Regional Planning Commission
+  organization_url: https://morpc.org
+  contact_name: Adam Porr
+  contact_email: aporr@morpc.org
+
+# MANDATORY. "Vintage" is loosely-defined term that refers to a label used to uniquely identify the age of a data product.  It is assumed that the
+# output data contained in the data kit will be updated periodically, and therefore the vintage typically refers to the
+# date when the output data was generated.  Thus, if the data is updated annually, there will be a new "vintage" each year
+# which is typically described by the four-digit number representing the year.  If the data is updated monthly, the label should also
+# capture the month.  It may be appropriate in some cases for the vintage to refer to a different event.  For example, Census PEP
+# defines their own vintages for their annual estimates.  If the output data in a data kit is simply an extract of a particular set of
+# Census PEP estimates it might make sense to use the vintage assigned by Census PEP regardless of when the output data was generated.
+# "vintage" should be specified as a human-readable string.  This value will be displayed as-is in the following format:
+# "XXXXXX; updated YYYYYY", where XXXXXX is the value specified for "vintage" and "YYYYYY" is the value specified for "update_period"
+# (see below). Some examples follow.
+# Data updated annually: 2023
+# Data updated monthly: 2023-10
+# Data updated sporadically (in this case be precise): 2023-10-05
+# Data created for a specific purpose or event: 2024 State of the City Report 
+vintage: "2024"
+
+# MANDATORY. Update period refers to the period of time that elapses between one vintage of the data and the subsequent vintage. 
+# "update_period" should be specified as a human-readable string.  This value will be displayed as-is in the following format:
+# "XXXXXX; updated YYYYYY", where XXXXXX is the value specified for "vintage" (see above) and "YYYYYY" is the value specified 
+# for "update_period". Some examples follow.
+# Data updated annually: annually, yearly, annually in June
+# Data updated monthly: monthly, "monthly on the 15th", "monthly on the second Tuesday"
+# Data updated on a multi-year cycle: biennially, "every two years", "on a two-year cycle", 
+update_period: "annually"
+
+# MANDATORY. A listing of the outputs produced by the data kit with key metadata
+outputs:
+    ### The properties below represent a list of two outputs.  Each element in the list is comprised of several properties.  
+    ### A hyphen before a property name indicates that a new list element is starting. 
+    
+    ### The following properties are required:
+    # Path to Frictionless Resource descriptor file
+  - resource_file_path: ./output_data/morpc-insights-pop-temporal.resource.yaml
+    
+    ### The following properties are optional, but strongly recommended
+    # A more in-depth description of the data than is provided in the resource file
+    description: This data consists of the best available set of population facts for the Central Ohio region and its constituent counties and communities. Historic data includes decennial census counts from 1980 to 2020 (reference date April 1), annual intercensal estimates from 2000 to 2020 (reference date July 1), and MORPC annual estimates from 2020 to 2024 (reference date January 1). Historic data comes from the Census Population Estimates Program, including intercensal estimates where available and the latest vintage post-censal estimates otherwise.  Forecasted data is available for five-year intervals between 2025 and 2050.  Forecasted values come from county-level and summarized GridMAZ-level forecasts produced for the 2024 MTP.  The 80% confidence limits are provided for the region-level and county-level forecasts.  Users are advised that the MORPC annual estimates are not intended for use as a time series and generally should not be compared year-over-year.
+    # The terms_of_use property includes information about how the item can be used and by whom.  This could refer to a pre-defined license
+    # such as those made available by Creative Commons.
+    #terms_of_use: 
+    # The tags property contains a comma-separated list of keywords that can be use to search for datasets or filter them.
+    tags: population, counts, estimates, forecasts, Census
+    # The credits property can be used to provide attribution to the parties responsible for the data or for upstream data from which this data was derived.
+    credits: Mid-Ohio Regional Planning Commission
+    # If there is a presentation kit associated with this output, include the path to the zipped presentation kit. The following line is commented
+    # out because no presentation kit exists at the time of writing.
+    #presentation_kit_file_path: ./output_data/censusPEPLong.presentation.zip
+
+    ### The following properties are optional. They will not be used directly by Insights platform phase 1, but may be used in later incarnations or for administrative purposes
+    # For data with geographic context, the geographic bounding box that contains the features reflected by the records. Specify the box in the following form, where the limits are decimal latitude and longitude:
+    # [[west_limit,south_limit],[east_limit,north_limit]]
+    geo_bounding_box: [[-84.046,39.173],[-81.955,40.773]]
+    # For data with geographic context, the string that best describes the region covered by the data, e.g. "City of Columbus", "Franklin County", "MORPC 15-County Region"
+    geo_coverage: MORPC 15-County Region
+    # For data with geographic context, the geographic unit or summary level that each record represents, e.g. "Location", "Census tract", "Municipality", "County"
+    geo_unit: County
+    # For data with temporal context, the earliest and latest times included in the set.  Specify in the following form, where the start and end are ISO8601-compliant date or datetime strings
+    # [start,end]
+    time_bounds: ["1980-04-01","2024-01-01"]
+    # For data with temporal context, the string that best describes temporal unit or period that each record represents, e.g. "Point","Monthly period","1-year period","5-year period" 
+    time_unit: Point
+
+# MANDATORY. A listing of the processes required to transform the inputs to outputs with key metadata
+processes:
+    ### The properties below represent a list of several proceses.  Each element in the list is comprised of several properties.  
+    ### A hyphen before a property name indicates that a new list element is starting. 
+
+    ### The following properties are required:
+    # Path to the process description. This can be a relative file system path or it can be a URL to a remote resource. For filesystem paths, use UNIX-style paths.
+  - process_description_path: ./morpc-insights-pop-temporal.ipynb
+    ### The following properties are optional, but strongly recommended   
+    # Type of process: "manual", "automatic", or "hybrid"
+    process_type: automatic
+    # For automatic or hybrid processes, process_environment refer to software used to carry out the process. Not required for manual processes. 
+    # Valid options are:"python","jupyter","r","rmarkdown"
+    process_environment: jupyter
+
+# OPTIONAL. A listing of the inputs with key metadata
+inputs:
+    ### The properties below represent a list of several inputs.  Each element in the list is comprised of several properties.
+    ### The second item in the list is commented out because the data was not included due to its size.
+    ### A hyphen before a property name indicates that a new list element is starting. 
+
+    ### The following properties are required:
+    # Path to the dataset. This can be a relative file system path or it can be a URL to a remote resource. For filesystem paths, use UNIX-style paths.
+  - data_path: ./input_data/morpc-pop-collect.csv
+    ### The following properties are optional, but strongly recommended
+    # Short, descriptive title for the dataset
+    title: MORPC Collected Population Data
+    # Short description of the item that provides people information they can scan at a glance. 2,048 characters max.
+    summary: 'A compendium of population counts, estimates, and forecasts for geographies in the MORPC 15-County region that has been 
+        compiled from various sources and converted to a standard form.  The input sources include: Census Intercensal Estimates, Census 
+        Population Estimates Program, Census American Community Survey, Mid-Ohio Regional Planning Commission, Ohio Department of Development, 
+        ESRI.'
+    # Details about the source of the data
+    source:
+      # Contact information for the entity that provided the data
+      source_provider:
+        organization_name: Mid-Ohio Regional Planning Commission
+        organization_url: https://www.morpc.org
+        contact_name: Adam Porr
+        contact_email: aporr@morpc.org
+      # If the data (or perhaps a superset) is available publicly, this is the URL where it can be found
+      source_url: https://github.com/morpc/morpc-pop-collect/blob/main/output_data/morpc-pop-collect.csv
+      # If the metadata is available publicly, this is the URL where it can be found
+      source_metadata_url: https://github.com/morpc/morpc-pop-collect/blob/main/output_data/morpc-pop-collect.resource.yaml
+      # If any documentation for the data is available publicly, this URL is the best starting point
+      source_doc_url: https://github.com/morpc/morpc-pop-collect
+    #  Path to Frictionless Resource descriptor file
+    resource_file_path: ./input_data/morpc-pop-collect.resource.yaml
+    ### All of the properties described above for output datasets may also be used for inputs, however all are optional.
