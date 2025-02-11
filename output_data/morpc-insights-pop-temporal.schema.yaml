@@ -1,26 +1,31 @@
 fields:
-  - name: POP
-    type: integer
-    description: 'Population'
-  - name: GEOID
+  - name: GEOIDFQ
     type: string
-    description: 'Unique identifier for the geography as issued by MORPC.  These are identical to Census-issued GEOIDs for Census geographies.'
-  - name: GEO_TYPE
+    description: 'Unique identifier for the geography as issued by MORPC.  These are identical to fully-qualified Census-issued GEOIDs for Census geographies.'
+  - name: Name
+    type: string
+    description: 'Name of the geography.'    
+  - name: Geography type
     type: string
     description: 'Code which designates the summary level (geography type) for which the GEOID applies.  The combination of GEO_TYPE and GEOID uniquely identify the geography for the record.'
-  - name: DATE
-    type: string
+  - name: Date
+    type: date
     description: 'ISO8601-compliant date string that identifies the reference date for which the estimate applies'
-  - name: VALUE_TYPE
-    type: string
-    description: 'Describes the nature of the population value.  Valid values are HISTORICAL, FORECAST, or CONF_LIMIT.'
-  - name: SOURCE
-    type: string
-    description: 'Standard descriptor which indicates the source of the population value. See morpc-insights-pop-temporal workflow documentation for details.'
+  - name: Historical
+    type: integer
+    description: 'The estimated historical population for the indicated year.'
+  - name: Forecast
+    type: integer
+    description: 'The forecasted population for the indicated year.'
+  - name: Confidence limit (upper)
+    type: integer
+    description: 'The estimated upper confidence limit for the population value.'
+  - name: Confidence limit (lower)
+    type: integer
+    description: 'The estimated lower confidence limit for the population value.'
 missingValues:
   - ''
 primaryKey:
-  - GEO_TYPE
-  - GEOID
-  - VALUE_TYPE
-  - SOURCE  
+  - GEOIDFQ
+  - Date
+  

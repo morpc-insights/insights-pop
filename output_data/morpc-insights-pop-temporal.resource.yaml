@@ -1,0 +1,20 @@
+name: morpc_insights_pop_temporal
+type: table
+title: MORPC Insights | Historic and Forecasted Population by Year
+description: 'This dataset provides the best available historical and forecasted population
+  estimates for the Central Ohio region and the counties and communities therein.  Estimates
+  are compiled from a variety of sources including the following: Census Intercensal
+  Estimates (CENINT), Census Population Estimates Program (CENPEP), Mid-Ohio Regional
+  Planning Commission (MORPC).  Note that different sources provide estimates as of
+  different days throughout the year, so be sure to note the entire date in the REFERENCE_PERIOD
+  field.  The VINTAGE_PERIOD field refers to the time that the estimate was produced
+  or released.  Earlier and (perhaps) later vintages may be available from the original
+  sources.'
+profile: data-resource
+path: morpc-insights-pop-temporal.csv
+scheme: file
+format: csv
+mediatype: text/csv
+hash: ca1b0f865c0d3a2d6d51bad4b0cb4d60
+bytes: 427021
+schema: morpc-insights-pop-temporal.schema.yaml
