@@ -23,6 +23,12 @@ fields:
   - name: Confidence limit (lower)
     type: integer
     description: 'The estimated lower confidence limit for the population value.'
+  - name: Source
+    type: string
+    description: 'The source of the estimate or forecast.  May be Census Intercensal Estimates (CENINT), Census Population Estimates Program (CENPEP), or MORPC.' 
+  - name: Vintage year
+    type: integer
+    description: 'The year the estimate or forecast was produced.' 
 missingValues:
   - ''
 primaryKey:

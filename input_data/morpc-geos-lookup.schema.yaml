@@ -1,0 +1,48 @@
+fields:
+  - name: GEOIDFQ
+    type: string
+    description: 'Fully-qualified (globally unique) identifier for the geography as issued by MORPC.  These are identical to Census-issued fully-qualified GEOIDs for Census geographies.'
+  - name: GEOID
+    type: string
+    description: 'Unique identifier for the geography within its sumlevel, as issued by MORPC.  These are identical to Census-issued GEOIDs for Census geographies.'
+  - name: SUMLEVEL
+    type: string
+    description: 'Machine-readable code which designates the summary level (geography type) for which the GEOID applies.'
+  - name: GEOTYPE
+    type: string
+    description: 'Human-readable code which designates the summary level (geography type) for which the GEOID applies. Essentially an alias for SUMLEVEL.'
+  - name: NAME
+    type: string
+    description: 'The human-readable name used to refer to the geography. Note that township names are not globally unique.'
+  - name: SOURCE
+    type: string
+    description: 'Standard descriptor which indicates the source of the geography. See morpc-geos-standardize workflow documentation for details.'
+  - name: STATEFP
+    type: string
+    description: 'State identification code. Globally unique.'
+  - name: COUNTYFP
+    type: string
+    description: 'County identification code. Unique within sumlevel 040 (state).'
+  - name: COUSUBFP
+    type: string
+    description: 'County subdivision identification code. Unique within sumlevel 050 (county).'
+  - name: PLACEFP
+    type: string
+    description: 'Census pace (city/village) identification code. Unique within sumlevel 040 (state).'
+  - name: TRACTCE
+    type: string
+    description: 'Census tract identification code. Unique within sumlevel 050 (county).'
+  - name: CLASSFP
+    type: string
+    description: 'Code assigned by U.S. Census Bureau that describes the class of a geographic entity. Set of valid codes varies by sumlevel. See https://www.census.gov/library/reference/code-lists/class-codes.html'
+  - name: MUNITYPE
+    type: string
+    description: 'Label assigned by MORPC that indicates whether a sub-county geography is a village (V), city (C), or township (T).'
+  - name: PLACECOMBO
+    type: string
+    description: 'A concatenated string for describing county parts of places that consists of the county name, place name, and municipality type separated by underscores. For example, FRANKLIN_COLUMBUS_CITY. PLACECOMBO is defined only for sumlevel 155 (PLACE-COUNTY) and 070 (TOWNSHIP-REMAINDER). PLACECOMBOs are globally unique with the exception of Washington Township. There are two Washington Townships in Union County (one also falls in Franklin and Delaware counties and is coterminous with the portions of Dublin City that fall in these counties).'
+    
+missingValues:
+  - ''
+primaryKey:
+  - GEOIDFQ
