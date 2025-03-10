@@ -7656,7 +7656,9 @@ a.anchor-link {
 <span class="n">MORPC_FORECAST_YEAR_RANGE</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2025</span><span class="p">,</span> <span class="mi">2050</span><span class="p">]</span>
 <span class="n">MORPC_FORECAST_YEAR_INTERVAL</span> <span class="o">=</span> <span class="mi">5</span>
 
-<span class="n">DECENNIAL_YEAR_RANGE</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1980</span><span class="p">,</span> <span class="mi">2020</span><span class="p">]</span>
+<span class="c1"># Decennial counts are not implemented as of March 2025</span>
+<span class="c1">#DECENNIAL_YEAR_RANGE = [1980, 2020]</span>
+
 <span class="n">INTERCENSAL_YEAR_RANGE</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">2019</span><span class="p">]</span>
 
 <span class="n">PEP_YEAR_RANGE</span> <span class="o">=</span> <span class="p">[</span><span class="n">INTERCENSAL_YEAR_RANGE</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">MORPC_ESTIMATE_YEAR_RANGE</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -7711,7 +7713,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [103]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">GEO_TYPE_LIST</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"COUNTY"</span><span class="p">,</span><span class="s2">"PLACE"</span><span class="p">,</span><span class="s2">"COUNTY-TOWNSHIP-REMAINDER"</span><span class="p">]</span>
@@ -7732,6 +7734,9 @@ a.anchor-link {
 <span class="p">}</span>
 
 <span class="n">CHART_DIRNAME</span> <span class="o">=</span> <span class="s2">"charts"</span>
+
+<span class="n">ALL_YEARS</span> <span class="o">=</span> <span class="n">INTERCENSAL_YEAR_RANGE</span> <span class="o">+</span> <span class="n">PEP_YEAR_RANGE</span> <span class="o">+</span> <span class="n">MORPC_ESTIMATE_YEAR_RANGE</span> <span class="o">+</span> <span class="n">MORPC_FORECAST_YEAR_RANGE</span>
+<span class="n">ALL_YEARS</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
@@ -8168,7 +8173,6 @@ morpc.frictionless_validate_resource | INFO | Validating resource on disk (inclu
 morpc.frictionless_validate_resource | INFO | Resource is valid
 morpc.load_frictionless_data | INFO | Loading data.
 frictionless_cast_field_types | INFO | Casting field POP as type integer.
-frictionless_cast_field_types | WARNING | Failed conversion of fieldname POP to type 'int'.  Trying type 'Int64' instead.
 frictionless_cast_field_types | INFO | Casting field GEOIDFQ as type string.
 frictionless_cast_field_types | INFO | Casting field SUMLEVEL as type string.
 frictionless_cast_field_types | INFO | Casting field REFERENCE_PERIOD as type string.
@@ -9413,7 +9417,6 @@ Casting field GEOID as type string.
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>INFO | Detected reference period frequency Y-JUN
-WARNING | Error occurred when attempting to create period index using 'Y-' format. Trying legacy 'A-' format.
 </pre>
 </div>
 </div>
@@ -9850,7 +9853,6 @@ WARNING | Error occurred when attempting to create period index using 'Y-' forma
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>INFO | Detected reference period frequency Y-JUN
-WARNING | Error occurred when attempting to create period index using 'Y-' format. Trying legacy 'A-' format.
 </pre>
 </div>
 </div>
@@ -10298,7 +10300,6 @@ WARNING | Error occurred when attempting to create period index using 'Y-' forma
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>INFO | Detected reference period frequency Y-DEC
-WARNING | Error occurred when attempting to create period index using 'Y-' format. Trying legacy 'A-' format.
 </pre>
 </div>
 </div>
@@ -10746,7 +10747,6 @@ WARNING | Error occurred when attempting to create period index using 'Y-' forma
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>INFO | Detected reference period frequency Y-DEC
-WARNING | Error occurred when attempting to create period index using 'Y-' format. Trying legacy 'A-' format.
 </pre>
 </div>
 </div>
@@ -11207,7 +11207,6 @@ PLACE
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>INFO | Detected reference period frequency Y-JUN
-WARNING | Error occurred when attempting to create period index using 'Y-' format. Trying legacy 'A-' format.
 </pre>
 </div>
 </div>
@@ -11856,7 +11855,7 @@ WARNING | Error occurred when attempting to create period index using 'Y-' forma
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [81]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [82]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">insightsPop</span> <span class="o">=</span> <span class="n">combinedData</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -11881,7 +11880,7 @@ WARNING | Error occurred when attempting to create period index using 'Y-' forma
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [82]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [83]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">insightsPop</span> <span class="o">=</span> <span class="n">insightsPop</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">geoLookup</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()[[</span><span class="s2">"GEOIDFQ"</span><span class="p">,</span><span class="s2">"NAME"</span><span class="p">,</span><span class="s2">"SUMLEVEL"</span><span class="p">,</span><span class="s2">"COUNTYFP"</span><span class="p">]],</span> <span class="n">on</span><span class="o">=</span><span class="s2">"GEOIDFQ"</span><span class="p">)</span>
@@ -11906,7 +11905,7 @@ WARNING | Error occurred when attempting to create period index using 'Y-' forma
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [83]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [84]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">townshipsTemp</span> <span class="o">=</span> <span class="n">insightsPop</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">insightsPop</span><span class="p">[</span><span class="s2">"SUMLEVEL"</span><span class="p">]</span> <span class="o">==</span> <span class="n">morpc</span><span class="o">.</span><span class="n">SUMLEVEL_LOOKUP</span><span class="p">[</span><span class="s2">"COUNTY-TOWNSHIP-REMAINDER"</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -11935,7 +11934,7 @@ WARNING | Error occurred when attempting to create period index using 'Y-' forma
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [84]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [85]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">countyTemp</span> <span class="o">=</span> <span class="n">insightsPop</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">insightsPop</span><span class="p">[</span><span class="s2">"SUMLEVEL"</span><span class="p">]</span> <span class="o">==</span> <span class="n">morpc</span><span class="o">.</span><span class="n">SUMLEVEL_LOOKUP</span><span class="p">[</span><span class="s2">"COUNTY"</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -11962,7 +11961,7 @@ WARNING | Error occurred when attempting to create period index using 'Y-' forma
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [85]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [86]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">insightsPop</span> <span class="o">=</span> <span class="n">insightsPop</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">items</span><span class="o">=</span><span class="p">[</span><span class="s2">"POP"</span><span class="p">,</span><span class="s2">"GEOIDFQ"</span><span class="p">,</span><span class="s2">"GEO_TYPE"</span><span class="p">,</span><span class="s2">"NAME"</span><span class="p">,</span><span class="s2">"DATE"</span><span class="p">,</span><span class="s2">"VALUE_TYPE"</span><span class="p">,</span><span class="s2">"CONF_LIMIT_UPPER"</span><span class="p">,</span><span class="s2">"CONF_LIMIT_LOWER"</span><span class="p">,</span><span class="s2">"SOURCE"</span><span class="p">,</span><span class="s2">"VINTAGE_PERIOD"</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="s2">"columns"</span><span class="p">)</span>
@@ -11987,7 +11986,7 @@ WARNING | Error occurred when attempting to create period index using 'Y-' forma
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [86]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [87]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">insightsPop</span> <span class="o">=</span> <span class="n">insightsPop</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s2">"GEOIDFQ"</span><span class="p">,</span><span class="s2">"GEO_TYPE"</span><span class="p">,</span><span class="s2">"NAME"</span><span class="p">,</span><span class="s2">"DATE"</span><span class="p">,</span><span class="s2">"CONF_LIMIT_UPPER"</span><span class="p">,</span><span class="s2">"CONF_LIMIT_LOWER"</span><span class="p">,</span><span class="s2">"SOURCE"</span><span class="p">,</span><span class="s2">"VINTAGE_PERIOD"</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="s2">"VALUE_TYPE"</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s2">"POP"</span><span class="p">)</span><span class="o">.</span><span class="n">reset_index</span><span class="p">()</span>
@@ -12012,7 +12011,7 @@ WARNING | Error occurred when attempting to create period index using 'Y-' forma
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [87]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [88]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">insightsPop</span> <span class="o">=</span> <span class="n">insightsPop</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span>
@@ -12047,7 +12046,7 @@ WARNING | Error occurred when attempting to create period index using 'Y-' forma
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [88]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [89]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">insightsPop</span> <span class="o">=</span> <span class="n">insightsPop</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">items</span><span class="o">=</span><span class="n">insightsPopSchema</span><span class="o">.</span><span class="n">field_names</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s2">"columns"</span><span class="p">)</span>
@@ -12072,7 +12071,7 @@ WARNING | Error occurred when attempting to create period index using 'Y-' forma
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [89]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [90]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">insightsPop</span> <span class="o">=</span> <span class="n">morpc</span><span class="o">.</span><span class="n">cast_field_types</span><span class="p">(</span><span class="n">insightsPop</span><span class="p">,</span> <span class="n">insightsPopSchema</span><span class="p">)</span>
@@ -12102,7 +12101,6 @@ frictionless_cast_field_types | INFO | Casting field Confidence limit (lower) as
 frictionless_cast_field_types | WARNING | Failed conversion of fieldname Confidence limit (lower) to type 'int'.  Trying type 'Int64' instead.
 frictionless_cast_field_types | INFO | Casting field Source as type string.
 frictionless_cast_field_types | INFO | Casting field Vintage year as type integer.
-frictionless_cast_field_types | WARNING | Failed conversion of fieldname Vintage year to type 'int'.  Trying type 'Int64' instead.
 </pre>
 </div>
 </div>
@@ -12124,7 +12122,7 @@ frictionless_cast_field_types | WARNING | Failed conversion of fieldname Vintage
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [90]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [91]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">insightsPop</span> <span class="o">=</span> <span class="n">insightsPop</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s2">"Geography type"</span><span class="p">,</span><span class="s2">"Name"</span><span class="p">,</span><span class="s2">"Date"</span><span class="p">])</span>
@@ -12149,7 +12147,7 @@ frictionless_cast_field_types | WARNING | Failed conversion of fieldname Vintage
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [91]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [92]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">insightsPop</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
@@ -12163,7 +12161,7 @@ frictionless_cast_field_types | WARNING | Failed conversion of fieldname Vintage
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[91]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[92]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -12306,7 +12304,7 @@ frictionless_cast_field_types | WARNING | Failed conversion of fieldname Vintage
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [92]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [93]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">maxPop</span> <span class="o">=</span> <span class="n">insightsPop</span><span class="p">[[</span><span class="s2">"GEOIDFQ"</span><span class="p">,</span><span class="s2">"Historical"</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"GEOIDFQ"</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">"columns"</span><span class="p">)</span>
@@ -12347,7 +12345,7 @@ frictionless_cast_field_types | WARNING | Failed conversion of fieldname Vintage
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [93]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [94]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">temp</span> <span class="o">=</span> <span class="n">insightsPop</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"GEOIDFQ"</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span>
@@ -12366,7 +12364,7 @@ frictionless_cast_field_types | WARNING | Failed conversion of fieldname Vintage
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[93]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[94]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -12486,7 +12484,7 @@ frictionless_cast_field_types | WARNING | Failed conversion of fieldname Vintage
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [94]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [95]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">insightsPop</span> <span class="o">=</span> <span class="n">insightsPop</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">noForecastIndex</span><span class="p">)</span>
@@ -12522,7 +12520,7 @@ frictionless_cast_field_types | WARNING | Failed conversion of fieldname Vintage
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [95]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [96]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">minPop</span> <span class="o">=</span> <span class="n">insightsPop</span><span class="p">[[</span><span class="s2">"GEOIDFQ"</span><span class="p">,</span><span class="s2">"Historical"</span><span class="p">,</span><span class="s2">"Forecast"</span><span class="p">]]</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"GEOIDFQ"</span><span class="p">)</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s2">"columns"</span><span class="p">)</span>
@@ -12563,7 +12561,7 @@ frictionless_cast_field_types | WARNING | Failed conversion of fieldname Vintage
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [96]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [97]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">temp</span> <span class="o">=</span> <span class="n">insightsPop</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"GEOIDFQ"</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span>
@@ -12582,7 +12580,7 @@ frictionless_cast_field_types | WARNING | Failed conversion of fieldname Vintage
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[96]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[97]:</div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
 <div>
 <style scoped="">
@@ -12674,7 +12672,7 @@ frictionless_cast_field_types | WARNING | Failed conversion of fieldname Vintage
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [97]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [98]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">insightsPop</span> <span class="o">=</span> <span class="n">insightsPop</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">excludeIndex</span><span class="p">)</span>
@@ -12699,7 +12697,7 @@ frictionless_cast_field_types | WARNING | Failed conversion of fieldname Vintage
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [98]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [99]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">insightsPop</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">INSIGHTS_POP_TABLE_PATH</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -12724,7 +12722,7 @@ frictionless_cast_field_types | WARNING | Failed conversion of fieldname Vintage
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [99]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [100]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">insightsPopResource</span> <span class="o">=</span> <span class="n">morpc</span><span class="o">.</span><span class="n">frictionless_create_resource</span><span class="p">(</span><span class="n">INSIGHTS_POP_TABLE_FILENAME</span><span class="p">,</span> 
@@ -12785,7 +12783,7 @@ morpc.frictionless_validate_resource | INFO | Resource is valid
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [100]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [113]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> agg
@@ -12793,6 +12791,8 @@ morpc.frictionless_validate_resource | INFO | Resource is valid
 <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">scandir</span><span class="p">(</span><span class="n">chartDir</span><span class="p">):</span>
     <span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 
+<span class="n">dateMin</span> <span class="o">=</span> <span class="n">insightsPop</span><span class="p">[</span><span class="s2">"Date"</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">dateMax</span> <span class="o">=</span> <span class="n">insightsPop</span><span class="p">[</span><span class="s2">"Date"</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 <span class="c1"># Create a list to accumulate geographies for which a thumbnail is generated</span>
 <span class="n">platformIncludeList</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="c1"># Iterate over each geography in data set</span>
@@ -12806,10 +12806,11 @@ morpc.frictionless_validate_resource | INFO | Resource is valid
     <span class="c1"># to determine the y-axis limit</span>
     <span class="n">maxPop</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[[</span><span class="s2">"Historical"</span><span class="p">,</span><span class="s2">"Forecast"</span><span class="p">,</span><span class="s2">"Confidence limit (upper)"</span><span class="p">]]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 
-    <span class="c1"># The following lines can be used to include only five year intervals in the historic data, plus the most</span>
-    <span class="c1"># recent MORPC estimate. As of Feb 2025, we decided to include all historic values so this is disabled.</span>
-    <span class="c1">#temp['year'] = temp["Date"].dt.year</span>
-    <span class="c1">#temp = temp.loc[(temp['year'] % 5 == 0) | (temp['year'].isin(range(MORPC_ESTIMATE_YEAR_RANGE[0], MORPC_ESTIMATE_YEAR_RANGE[1]+1)))]</span>
+    <span class="c1"># The following lines extracts 5-year intervals (i.e. decennial values and mid-decennial)</span>
+    <span class="c1"># Note that the % is the modulo operator. The expression selects all records where the year</span>
+    <span class="c1"># divided by 5 produces no remainder.</span>
+    <span class="n">temp</span><span class="p">[</span><span class="s1">'year'</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="s2">"Date"</span><span class="p">]</span><span class="o">.</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">temp</span><span class="p">[</span><span class="s1">'year'</span><span class="p">]</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
 
     <span class="c1"># The following lines were anticipated to be used to display the forecast vintage in the legend entry of the forecast, </span>
     <span class="c1"># values, however as of Feb 2025 we decided not to do this. The case forecastVintage=None is used, however, to skip</span>
@@ -12848,6 +12849,9 @@ morpc.frictionless_validate_resource | INFO | Resource is valid
     <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">visible</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"lightgrey"</span><span class="p">)</span>
+
+    <span class="c1"># Set the x-limit to the exact range of included years</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="n">xmin</span><span class="o">=</span><span class="n">dateMin</span><span class="p">,</span> <span class="n">xmax</span><span class="o">=</span><span class="n">dateMax</span><span class="p">)</span>
     <span class="c1"># Set the y-limit to 10% more than the max pop value</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">ymin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ymax</span><span class="o">=</span><span class="n">maxPop</span><span class="o">*</span><span class="mf">1.1</span><span class="p">)</span>   
     <span class="c1"># Format the y-axis labels as integers with comma separators</span>
@@ -12912,6 +12916,8 @@ morpc.frictionless_validate_resource | INFO | Resource is valid
             <span class="p">},</span>
         <span class="p">},</span>
         <span class="s2">"xAxisOptions"</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">'min'</span><span class="p">:</span> <span class="n">dateMin</span><span class="p">,</span>
+            <span class="s1">'max'</span><span class="p">:</span> <span class="n">dateMax</span><span class="p">,</span>
             <span class="s1">'date_axis'</span><span class="p">:</span>  <span class="kc">True</span><span class="p">,</span>
             <span class="s1">'num_format'</span><span class="p">:</span> <span class="s1">'yyyy'</span><span class="p">,</span>
             <span class="s1">'major_unit'</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
@@ -12939,20 +12945,6 @@ morpc.frictionless_validate_resource | INFO | Resource is valid
     <span class="n">writer</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 
 <span class="o">%</span><span class="k">matplotlib</span> inline
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=b5039254-6270-4726-be4b-09956fda68ee">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 </div>
 </div>
@@ -12996,7 +12988,7 @@ morpc.frictionless_validate_resource | INFO | Resource is valid
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [101]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">columnNames</span><span class="o">=</span><span class="p">[</span><span class="s2">"TileID"</span><span class="p">,</span><span class="s2">"TilesetID"</span><span class="p">,</span><span class="s2">"GeographyType"</span><span class="p">,</span><span class="s2">"GeographyName"</span><span class="p">,</span><span class="s2">"Category"</span><span class="p">,</span><span class="s2">"Headline"</span><span class="p">,</span><span class="s2">"Commentary"</span><span class="p">,</span><span class="s2">"ThumbnailURL"</span><span class="p">,</span><span class="s2">"Contributor"</span><span class="p">,</span><span class="s2">"Vintage"</span><span class="p">,</span><span class="s2">"UpdateInterval"</span><span class="p">,</span><span class="s2">"ShareURL"</span><span class="p">,</span><span class="s2">"DataProductURL"</span><span class="p">,</span><span class="s2">"MoreInformationURL"</span><span class="p">]</span>
@@ -13021,7 +13013,7 @@ morpc.frictionless_validate_resource | INFO | Resource is valid
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [102]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">catalog</span> <span class="o">=</span> <span class="n">insightsPop</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">insightsPop</span><span class="p">[</span><span class="s2">"GEOIDFQ"</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">platformIncludeList</span><span class="p">)]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -13046,7 +13038,7 @@ morpc.frictionless_validate_resource | INFO | Resource is valid
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [103]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">catalog</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">items</span><span class="o">=</span><span class="p">[</span><span class="s2">"GEOIDFQ"</span><span class="p">,</span><span class="s2">"Name"</span><span class="p">,</span><span class="s2">"Geography type"</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="s2">"columns"</span><span class="p">)</span> \
@@ -13074,7 +13066,7 @@ morpc.frictionless_validate_resource | INFO | Resource is valid
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [104]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">catalog</span><span class="p">[</span><span class="s2">"GeographyType"</span><span class="p">]</span> <span class="o">=</span> <span class="n">catalog</span><span class="p">[</span><span class="s2">"GeographyType"</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">({</span>
@@ -13104,7 +13096,7 @@ morpc.frictionless_validate_resource | INFO | Resource is valid
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [105]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">catalog</span><span class="p">[</span><span class="s2">"TileID"</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
@@ -13133,7 +13125,7 @@ morpc.frictionless_validate_resource | INFO | Resource is valid
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [106]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">catalog</span><span class="p">[</span><span class="s2">"ThumbnailURL"</span><span class="p">]</span> <span class="o">=</span> <span class="n">catalog</span><span class="p">[</span><span class="s2">"GEOIDFQ"</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">geoid</span><span class="p">:</span><span class="s2">"https://raw.githubusercontent.com/morpc-insights/pop-temporal/refs/heads/main/output_data/charts/</span><span class="si">{}</span><span class="s2">.svg"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">geoid</span><span class="p">))</span>
@@ -13158,7 +13150,7 @@ morpc.frictionless_validate_resource | INFO | Resource is valid
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [107]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">catalog</span><span class="p">[</span><span class="s2">"Contributor"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Mid-Ohio Regional Planning Commission"</span>
@@ -13186,7 +13178,7 @@ morpc.frictionless_validate_resource | INFO | Resource is valid
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [108]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">catalog</span><span class="p">[</span><span class="s2">"DataProductURL"</span><span class="p">]</span> <span class="o">=</span> <span class="n">catalog</span><span class="p">[</span><span class="s2">"GEOIDFQ"</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">geoid</span><span class="p">:</span><span class="s2">"https://morpc.maps.arcgis.com/apps/dashboards/d1291225631545438293bdfcfffaef6b#region=</span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">geoid</span><span class="p">))</span>
@@ -13211,7 +13203,7 @@ morpc.frictionless_validate_resource | INFO | Resource is valid
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [109]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">temp</span><span class="p">[</span><span class="s2">"MoreInformationURL"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"https://raw.githubusercontent.com/morpc-insights/pop-temporal/refs/heads/main/fact_sheets/population.pdf"</span>
@@ -13239,7 +13231,7 @@ morpc.frictionless_validate_resource | INFO | Resource is valid
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [110]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">catalog</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">items</span><span class="o">=</span><span class="n">columnNames</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s2">"columns"</span><span class="p">)</span>
@@ -13259,144 +13251,16 @@ morpc.frictionless_validate_resource | INFO | Resource is valid
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7009384f-1ba7-4b86-9e93-823b8fb4623a">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=7009384f-1ba7-4b86-9e93-823b8fb4623a">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [111]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">catalog</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell-outputWrapper">
-<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
-</div>
-<div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[111]:</div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>TileID</th>
-<th>TilesetID</th>
-<th>GeographyType</th>
-<th>GeographyName</th>
-<th>Category</th>
-<th>Headline</th>
-<th>Commentary</th>
-<th>ThumbnailURL</th>
-<th>Contributor</th>
-<th>Vintage</th>
-<th>UpdateInterval</th>
-<th>ShareURL</th>
-<th>DataProductURL</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>None</td>
-<td>None</td>
-<td>County</td>
-<td>Delaware County</td>
-<td>None</td>
-<td>TBD</td>
-<td>TBD</td>
-<td>https://raw.githubusercontent.com/morpc-insigh...</td>
-<td>Mid-Ohio Regional Planning Commission</td>
-<td>2025</td>
-<td>annually</td>
-<td>None</td>
-<td>https://morpc.maps.arcgis.com/apps/dashboards/...</td>
-</tr>
-<tr>
-<th>1</th>
-<td>None</td>
-<td>None</td>
-<td>County</td>
-<td>Fairfield County</td>
-<td>None</td>
-<td>TBD</td>
-<td>TBD</td>
-<td>https://raw.githubusercontent.com/morpc-insigh...</td>
-<td>Mid-Ohio Regional Planning Commission</td>
-<td>2025</td>
-<td>annually</td>
-<td>None</td>
-<td>https://morpc.maps.arcgis.com/apps/dashboards/...</td>
-</tr>
-<tr>
-<th>2</th>
-<td>None</td>
-<td>None</td>
-<td>County</td>
-<td>Fayette County</td>
-<td>None</td>
-<td>TBD</td>
-<td>TBD</td>
-<td>https://raw.githubusercontent.com/morpc-insigh...</td>
-<td>Mid-Ohio Regional Planning Commission</td>
-<td>2025</td>
-<td>annually</td>
-<td>None</td>
-<td>https://morpc.maps.arcgis.com/apps/dashboards/...</td>
-</tr>
-<tr>
-<th>3</th>
-<td>None</td>
-<td>None</td>
-<td>County</td>
-<td>Franklin County</td>
-<td>None</td>
-<td>TBD</td>
-<td>TBD</td>
-<td>https://raw.githubusercontent.com/morpc-insigh...</td>
-<td>Mid-Ohio Regional Planning Commission</td>
-<td>2025</td>
-<td>annually</td>
-<td>None</td>
-<td>https://morpc.maps.arcgis.com/apps/dashboards/...</td>
-</tr>
-<tr>
-<th>4</th>
-<td>None</td>
-<td>None</td>
-<td>County</td>
-<td>Hocking County</td>
-<td>None</td>
-<td>TBD</td>
-<td>TBD</td>
-<td>https://raw.githubusercontent.com/morpc-insigh...</td>
-<td>Mid-Ohio Regional Planning Commission</td>
-<td>2025</td>
-<td>annually</td>
-<td>None</td>
-<td>https://morpc.maps.arcgis.com/apps/dashboards/...</td>
-</tr>
-</tbody>
-</table>
-</div>
 </div>
 </div>
 </div>
@@ -13417,7 +13281,7 @@ morpc.frictionless_validate_resource | INFO | Resource is valid
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [112]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">catalog</span><span class="o">.</span><span class="n">to_excel</span><span class="p">(</span><span class="s2">"catalog.xlsx"</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
