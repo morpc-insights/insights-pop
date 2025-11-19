@@ -1,0 +1,17 @@
+name: morpc-membership-status-lookup
+type: table
+title: MORPC membership status for Central Ohio governments
+description: This table identifies the MORPC membership status for all local governments
+  in Central Ohio, as well as their participation in the Metropolitan Planning Organization
+  (MPO), Central Ohio Rural Planning Organization (CORPO), or the Regional Planning
+  Commission (RPC). THIS DATA IS NOT AUTHORITATIVE. Membership changes are approved
+  periodically by MORPC Commission resolution, therefore the resolutions themselves
+  are the authoritative source.
+profile: data-resource
+path: morpc-membership-status-lookup.csv
+scheme: file
+format: csv
+mediatype: text/csv
+hash: a3c6cc7baa1065c3a070d47ec4ef68f2
+bytes: 117693
+schema: morpc-membership-status-lookup.schema.yaml

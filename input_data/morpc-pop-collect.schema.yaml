@@ -1,0 +1,48 @@
+fields:
+  - name: POP
+    type: integer
+    description: 'Population'
+  - name: GEOIDFQ
+    type: string
+    description: 'Unique identifier for the geography as issued by MORPC.  These are identical to Census-issued GEOIDs for Census geographies.'
+  - name: SUMLEVEL
+    type: string
+    description: 'Code which designates the summary level (geography type) for which the GEOID applies.  The combination of SUMLEVEL and GEOID uniquely identify the geography for the record.  This SUMLEVEL is issued by MORPC, however they are identical to Census-issued SUMLEVELs where applicable.'
+  - name: REFERENCE_PERIOD
+    type: string
+    description: 'Period for which the estimate applies'
+  - name: REFERENCE_PERIOD_FREQ
+    type: string
+    description: 'Frequency descriptor for reference period as used by the Python Pandas package'
+  - name: VINTAGE_PERIOD
+    type: string
+    description: 'Period reflecting the vintage of the estimate'
+  - name: VINTAGE_PERIOD_FREQ
+    type: string
+    description: 'Frequency descriptor for vintage period as used by the Python Pandas package'
+  - name: VALUE_TYPE
+    type: string
+    description: 'Describes the nature of the population value.  Valid values are ESTIMATE, COUNT, or FORECAST.'
+  - name: CONF_LEVEL
+    type: number
+    description: 'Confidence level for population value (where applicable)'
+  - name: CONF_LIMIT_UPPER
+    type: integer
+    description: 'Upper confidence limit for population value (where applicable)'
+  - name: CONF_LIMIT_LOWER
+    type: integer
+    description: 'Lower confidence limit for population value (where applicable)'
+  - name: SOURCE
+    type: string
+    description: 'Standard descriptor which indicates the source of the population value. See morpc-pop-collect workflow documentation for details.'
+  - name: LAST_UPDATED
+    type: date
+    description: 'ISO8601-compliant date string indicating when the record was last updated.'
+missingValues:
+  - ''
+primaryKey:
+  - GEOIDFQ
+  - REFERENCE_PERIOD
+  - VINTAGE_PERIOD
+  - VALUE_TYPE
+  - SOURCE  

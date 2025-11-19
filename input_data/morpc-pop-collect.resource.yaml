@@ -1,0 +1,16 @@
+name: morpc_pop_collect
+type: table
+title: MORPC Collected Population Data
+description: 'This dataset is a compendium of population counts, estimates, and forecasts
+  for geographies in the MORPC 15-County region that has been compiled from various
+  sources and converted to a standard form.  The input sources include: Census Intercensal
+  Estimates, Census Population Estimates Program, Census American Community Survey,
+  Mid-Ohio Regional Planning Commission, Ohio Department of Development, ESRI.'
+profile: data-resource
+path: morpc-pop-collect.csv
+scheme: file
+format: csv
+mediatype: text/csv
+hash: e9966474aef9e7dea4016e6434d59a81
+bytes: 3380036
+schema: morpc-pop-collect.schema.yaml
